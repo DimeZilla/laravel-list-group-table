@@ -1,4 +1,5 @@
 @php
+    // these are the options and their defaults that the view accepts
     $header = $header ?? true;
     $columns = $columns ?? [];
     $data = $data ?? false;
@@ -18,6 +19,7 @@
     $row_attributes = $row_attributes ?? false;
     $row_clickable = $row_clickable ?? false;
     $no_data_text = $no_data_text ?? 'No Data';
+    $exportable = $exportable ?? false;
 @endphp
 
 @if($data)
