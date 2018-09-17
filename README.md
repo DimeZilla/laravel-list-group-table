@@ -11,38 +11,38 @@ composer require dimezilla/laravel-bootstrap-list-group-table
 This package provides a view called `list-group-table`. This view takes a bunch of options that make it easy to generate list group tables:
 
 ### Options:
-    - $data
-        - type: A laravel collection
-        - description: A collection of data to pass to the list group table
-        - default: false
-    - $header
-        - type: Boolean
-        - description: Whether or not to display the header
-        - default: true
-    - $columns
-        - type: array
-        - description: An associative array of rules for how to display each column - see example
-        - default: empty array
-    - $break_size
-        - type: string
-        - description: when to break the table into something mobile friendly. Uses the bootstrap break points by appending the break to `col-`. i.e. sm, md, lg, xl
-        - default: md
-    - $row_attributes
-        - type: array
-        - description: An associative array of other attributes to add to each row. see example
-        - default: empty array
-    - $row_clickable
-        - type: boolean
-        - description: Whether or not to add hover affects to the row. You'll need to generate the actual event outside the view. For instance, I've used row clickable and row_attributes to trigger a bootstrap modal.
-        - default: false
-    - $no_data_text
-        - type: callable|string
-        - description: You can define a callback or use a string to decide what to do when the table is empty. For instance, you can display "No Data"
-        - default: "No Data"
-    - $exportable
-        - type: boolean
-        - description: exports the table to csv using a package defined route
-        - default: false
+- $data
+    - type: A laravel collection
+    - description: A collection of data to pass to the list group table
+    - default: false
+- $header
+    - type: Boolean
+    - description: Whether or not to display the header
+    - default: true
+- $columns
+    - type: array
+    - description: An associative array of rules for how to display each column - see example
+    - default: empty array
+- $break_size
+    - type: string
+    - description: when to break the table into something mobile friendly. Uses the bootstrap break points by appending the break to `col-`. i.e. sm, md, lg, xl
+    - default: md
+- $row_attributes
+    - type: array
+    - description: An associative array of other attributes to add to each row. see example
+    - default: empty array
+- $row_clickable
+    - type: boolean
+    - description: Whether or not to add hover affects to the row. You'll need to generate the actual event outside the view. For instance, I've used row clickable and row_attributes to trigger a bootstrap modal.
+    - default: false
+- $no_data_text
+    - type: callable|string
+    - description: You can define a callback or use a string to decide what to do when the table is empty. For instance, you can display "No Data"
+    - default: "No Data"
+- $exportable
+    - type: boolean
+    - description: exports the table to csv using a package defined route
+    - default: false
 
 ### Example:
 ```
