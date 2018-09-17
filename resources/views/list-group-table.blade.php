@@ -20,6 +20,24 @@
     $row_clickable = $row_clickable ?? false;
     $no_data_text = $no_data_text ?? 'No Data';
     $exportable = $exportable ?? false;
+
+    // now lets preprocess our data
+    // first extract the columns columns
+    $column_labels = [];
+    foreach ($columns as $col) {
+        if (empty($col['title'])) {
+            $column_labels[] = labelize_db_field($col['key'] ?? '');
+        }
+        else if (is_callable($col['title'])) {
+            $column_labels[] = $col['title']();
+        }
+        else if (is_string($col['title'])) {
+            $column_labels[] = _($col['title']);
+        }
+        else {
+            $column_labels[] = '';
+        }
+    }
 @endphp
 
 @if($data)
@@ -27,7 +45,7 @@
         @if ($header)
             <li class="list-group-item list-group-item-secondary">
                 <div class="row">
-                    @foreach ($columns as $col)
+                    @foreach ($columns as $index => $col)
                         <div class="{{ $col['size'] ? 'col-md-' . $col['size'] : 'col' }} list-group-item-header-col-item">
                             @if(isset($col['sortKey']))
                                 @php
@@ -39,17 +57,7 @@
                                 <a href="{{ append_to_current_query(['sortBy' => $sort_key]) }}">
                             @endif
                             <span>
-                                <strong>
-                                    @if (empty($col['title']))
-                                        {{ _(labelize_db_field($col['key'])) }}
-                                    @else
-                                        @if(is_callable($col['title']))
-                                            {!! $col['title']() !!}
-                                        @elseif (is_string($col['title']))
-                                            {{ _($col['title']) }}
-                                        @endif
-                                    @endif
-                                </strong>
+                                <strong>{!! $column_labels[$index] !!}</strong>
                             </span>
                             @if(isset($col['sortKey']))
                                 </a>
