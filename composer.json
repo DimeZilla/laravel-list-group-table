@@ -1,5 +1,5 @@
 {
-    "name": "dimezilla/laravel-bootstrap-list-group-table",
+    "name": "dimezilla/laravel-list-group-table",
     "description": "A neat list group table generator based on Bootstrap 4",
     "type": "package",
     "license": "MIT",
