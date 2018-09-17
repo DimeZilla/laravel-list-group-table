@@ -104,10 +104,11 @@
 
     @if ($exportable)
         <div class="mt-2 text-right">
-            @php
-                session()->flash('lgtable-data', lgtable_service()->processData($data, $columns, true));
-            @endphp
-            <a href="{{ route('lgtable-get-export-data') }}" class="btn btn-success" target="_blank">{{ _('Export to CSV') }}</a>
+            <form class="d-inline" method="POST" action="{{ route('lgtable-post-export-data') }}">
+                @csrf
+                <input type="hidden" name="lgtable-data" value="{{ json_encode(lgtable_service()->processData($data, $columns, true)) }}" />
+                <button class="btn btn-success">{{ _('Export to CSV') }}</button>
+            </form>
         </div>
     @endif
 @endif
