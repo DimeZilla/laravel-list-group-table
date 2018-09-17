@@ -1,0 +1,32 @@
+{
+    "name": "dimezilla/laravel-bootstrap-list-group-table",
+    "description": "A neat list group table generator based on Bootstrap 4",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joshua Diamond",
+            "email": "diamond.joshh@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "DiamondLGTAble\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ],
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DiamondLGTAble\\Providers\\ViewProvider"
+            ],
+            "aliases": {
+                "LGTAble": "DiamondLGTAble\\Facades\\LGTable"
+            }
+        }
+    }
+}
