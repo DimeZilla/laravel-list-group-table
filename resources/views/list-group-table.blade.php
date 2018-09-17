@@ -20,24 +20,6 @@
     $row_clickable = $row_clickable ?? false;
     $no_data_text = $no_data_text ?? 'No Data';
     $exportable = $exportable ?? false;
-
-    // now lets preprocess our data
-    // first extract the columns columns
-    $column_labels = [];
-    foreach ($columns as $col) {
-        if (empty($col['title'])) {
-            $column_labels[] = labelize_db_field($col['key'] ?? '');
-        }
-        else if (is_callable($col['title'])) {
-            $column_labels[] = $col['title']();
-        }
-        else if (is_string($col['title'])) {
-            $column_labels[] = _($col['title']);
-        }
-        else {
-            $column_labels[] = '';
-        }
-    }
 @endphp
 
 @if($data)
@@ -57,7 +39,7 @@
                                 <a href="{{ append_to_current_query(['sortBy' => $sort_key]) }}">
                             @endif
                             <span>
-                                <strong>{!! $column_labels[$index] !!}</strong>
+                                <strong>{!! lgtable_service()->colTitle($col) !!}</strong>
                             </span>
                             @if(isset($col['sortKey']))
                                 </a>
@@ -111,11 +93,7 @@
                     <div class="row">
                         @foreach ($columns as $col)
                             <div class="{{ $col['size'] ? 'col-' . $break_size . '-' . $col['size'] : 'col' }} list-group-item-col-item decorate">
-                                @php
-                                    $key = $col['key'] ?? '';
-                                    $cb = isset($col['cb']) && is_callable($col['cb']) ? $col['cb'] : false;
-                                @endphp
-                                <span>{!! $col['before'] ?? null !!}{!! $cb !== false ? $cb($item) : $item->$key !!}{!! $col['after'] ?? null !!}</span>
+                                <span>{!! lgtable_service()->colValue($col, $item) !!}</span>
                             </div>
                         @endforeach
                     </div>
@@ -123,4 +101,13 @@
             @endforeach
         @endif
     </ul>
+
+    @if ($exportable)
+        <div class="mt-2 text-right">
+            @php
+                session()->flash('lgtable-data', lgtable_service()->processData($data, $columns, true));
+            @endphp
+            <a href="{{ route('lgtable-get-export-data') }}" class="btn btn-success" target="_blank">{{ _('Export to CSV') }}</a>
+        </div>
+    @endif
 @endif

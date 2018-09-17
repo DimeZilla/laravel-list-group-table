@@ -10,3 +10,9 @@ if (!function_exists('labelize_db_field')) {
         return ucwords( str_replace('_', ' ', $field) );
     }
 }
+
+if (!function_exists('lgtable_service')) {
+    function lgtable_service() {
+        return app('lgtable');
+    }
+}
