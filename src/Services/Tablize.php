@@ -31,12 +31,12 @@ class Tablize
             return labelize_db_field($col['key'] ?? '');
         }
 
-        if (is_callable($col['title'])) {
-            return $col['title']();
-        }
-
         if (is_string($col['title'])) {
             return _($col['title']);
+        }
+
+        if (is_callable($col['title'])) {
+            return $col['title']();
         }
 
         return '';
