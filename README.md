@@ -73,8 +73,8 @@ This package provides a view called `list-group-table`. This view takes a bunch 
             'title' => 'Employee Name',
             // integer, tells the table how large the column should be, i.e. col-md-2
             'size' => 2,
-            // if sort key is present, this column will be sortable by the data key so that the user can click on the column header
-            'sortKey' => 'name'
+            // columns are sortable by default. to turn off sort on a column, pass sortable => false
+            'sortable' => false // default true
         ],
         [
             'key' => 'age',
