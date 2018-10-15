@@ -80,7 +80,7 @@ class Col implements JsonSerializable
             return $cb($row);
         }
         elseif (!empty($key)) {
-            return $row->$key ?? '';
+            return (is_array($row) ? $row[$key] : $row->$key) ?? '';
         }
 
         return null;
